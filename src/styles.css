@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "@fontsource/outfit/400.css";
+@import "@fontsource/outfit/500.css";
+@import "@fontsource/outfit/600.css";
+@import "@fontsource/outfit/700.css";
+@import "@fontsource/fraunces/600.css";
+@import "@fontsource/fraunces/700.css";
+
+@theme {
+  --font-sans: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+  --font-display: "Fraunces", "Iowan Old Style", Palatino, Georgia, serif;
+
+  --color-paper: #f3eee6;
+  --color-surface: #fffcf8;
+  --color-ink: #1c1916;
+  --color-muted: #6f675e;
+  --color-line: #e3dacd;
+  --color-primary: #1b6b45;
+  --color-primary-soft: #e5f2eb;
+  --color-on-primary: #f4fbf7;
+  --color-clay: #b5462a;
+  --color-clay-soft: #f8ebe6;
+  --color-on-clay: #fff8f5;
+  --color-gold: #8a5a12;
+  --color-gold-soft: #f6edd9;
+
+  --shadow-card:
+    0px 0px 0px 1px rgba(28, 25, 22, 0.06),
+    0px 1px 2px -1px rgba(28, 25, 22, 0.05),
+    0px 10px 24px -16px rgba(28, 25, 22, 0.28);
+  --shadow-dock:
+    0px 0px 0px 1px rgba(28, 25, 22, 0.08),
+    0px 10px 30px -12px rgba(28, 25, 22, 0.28);
+
+  --radius-card: 1.25rem;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    min-height: 100dvh;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  .font-display {
+    font-weight: 600;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .dock {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+
+  .mirror {
+    transform: scaleX(-1);
+  }
+
+  .face-frame {
+    aspect-ratio: 4 / 3;
+  }
+
+  .face-oval {
+    box-shadow: 0 0 0 999px rgba(28, 25, 22, 0.42);
+  }
+
+  .thumb {
+    outline: 1px solid rgba(28, 25, 22, 0.12);
+    outline-offset: -1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
