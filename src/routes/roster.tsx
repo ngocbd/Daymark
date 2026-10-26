@@ -17,7 +17,7 @@ import {
 
 export const Route = createFileRoute("/roster")({
   component: RosterPage,
-  head: () => ({ meta: [{ title: "Roster · Daymark" }] }),
+  head: () => ({ meta: [{ title: "Roster - Daymark" }] }),
 });
 
 const standingCopy = {
@@ -58,7 +58,7 @@ function RosterPage() {
       return;
     }
     if (end <= start) {
-      setError("End time has to be after the start. Overnight shifts aren\u2019t in this roster.");
+      setError("End time has to be after the start. Overnight shifts aren't in this roster.");
       return;
     }
     setError("");
@@ -73,7 +73,7 @@ function RosterPage() {
         <div>
           <h1 className="font-display text-4xl tracking-tight">Roster</h1>
           <p className="mt-1 text-sm text-muted">
-            {anchor ? `${formatShortDate(ymd(days[0]!))} \u2013 ${formatShortDate(ymd(days[6]!))}` : "This week"}
+            {anchor ? `${formatShortDate(ymd(days[0]!))} - ${formatShortDate(ymd(days[6]!))}` : "This week"}
           </p>
         </div>
         <div className="flex gap-1">
@@ -115,7 +115,7 @@ function RosterPage() {
       ) : null}
 
       {now == null ? (
-        <p className="mt-6 text-sm text-muted">Reading this device\u2026</p>
+        <p className="mt-6 text-sm text-muted">Reading this device...</p>
       ) : visible.length === 0 ? (
         <p className="mt-6 text-sm text-muted">No shifts this week. Add one, or approve a shift or on-site request.</p>
       ) : (
@@ -132,11 +132,11 @@ function RosterPage() {
               <li key={shift.id} className="flex items-center gap-3 rounded-card bg-surface p-4 shadow-card">
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-semibold">
-                    {formatShortDate(shift.date)} \u00b7 {shift.start}\u2013{shift.end}
+                    {formatShortDate(shift.date)} | {shift.start}-{shift.end}
                   </p>
                   <p className="truncate text-sm text-muted">
                     {shift.label}
-                    {shift.site ? ` \u00b7 ${shift.site}` : ""} \u00b7 {formatDurationSafe(shiftMinutes(shift))}
+                    {shift.site ? ` | ${shift.site}` : ""} | {formatDurationSafe(shiftMinutes(shift))}
                   </p>
                   <p className={`text-xs font-medium ${tone}`}>
                     {standingCopy[standing.standing]}

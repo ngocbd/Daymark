@@ -22,7 +22,7 @@ import {
 
 export const Route = createFileRoute("/")({
   component: TodayPage,
-  head: () => ({ meta: [{ title: "Today · Daymark" }] }),
+  head: () => ({ meta: [{ title: "Today - Daymark" }] }),
 });
 
 const kindLabel: Record<PunchKind, string> = {
@@ -100,12 +100,12 @@ function TodayPage() {
         <div>
           <p className="text-sm font-medium text-muted">{now ? formatLongDate(now) : "Today"}</p>
           <p className="mt-1 font-display text-6xl leading-none tracking-tight tabular-nums">
-            {now ? formatClock(now) : "\u2013\u2013:\u2013\u2013"}
+            {now ? formatClock(now) : "--:--"}
           </p>
           <p className="mt-3 text-sm font-medium">
             {clockedIn ? (
               <span className="text-primary">
-                On the clock{elapsed != null ? ` \u00b7 ${formatDuration(elapsed)}` : ""}
+                On the clock{elapsed != null ? ` | ${formatDuration(elapsed)}` : ""}
               </span>
             ) : (
               <span className="text-muted">Off the clock</span>
@@ -116,18 +116,18 @@ function TodayPage() {
 
       {todayShift ? (
         <Card className="mt-5">
-          <p className="text-xs font-semibold tracking-wide text-muted uppercase">Today\u2019s shift</p>
+          <p className="text-xs font-semibold tracking-wide text-muted uppercase">Today's shift</p>
           <p className="mt-1 text-base font-semibold">
-            {todayShift.start}\u2013{todayShift.end}
-            {todayShift.site ? ` \u00b7 ${todayShift.site}` : ""}
+            {todayShift.start}-{todayShift.end}
+            {todayShift.site ? ` | ${todayShift.site}` : ""}
           </p>
           <p className="mt-1 text-sm text-muted">
             {todayShift.label}
-            {standing?.standing === "late" ? ` \u00b7 Late ${standing.late}m` : ""}
-            {standing?.standing === "on-time" ? " \u00b7 On time" : ""}
-            {standing?.standing === "due" ? " \u00b7 Not clocked in yet" : ""}
-            {standing?.standing === "open" ? " \u00b7 Shift in progress" : ""}
-            {standing?.standing === "missed" ? " \u00b7 Missed" : ""}
+            {standing?.standing === "late" ? ` | Late ${standing.late}m` : ""}
+            {standing?.standing === "on-time" ? " | On time" : ""}
+            {standing?.standing === "due" ? " | Not clocked in yet" : ""}
+            {standing?.standing === "open" ? " | Shift in progress" : ""}
+            {standing?.standing === "missed" ? " | Missed" : ""}
           </p>
         </Card>
       ) : null}
@@ -192,9 +192,9 @@ function TodayPage() {
       </div>
 
       <section className="mt-6">
-        <h2 className="text-sm font-semibold">Today\u2019s punches</h2>
+        <h2 className="text-sm font-semibold">Today's punches</h2>
         {now == null ? (
-          <p className="mt-3 text-sm text-muted">Reading this device\u2026</p>
+          <p className="mt-3 text-sm text-muted">Reading this device...</p>
         ) : todayPunches.length === 0 ? (
           <p className="mt-3 text-sm text-muted">Nothing stamped yet today.</p>
         ) : (
@@ -219,12 +219,12 @@ function PunchRow({ punch, onRemove }: { punch: Punch; onRemove: () => void }) {
       )}
       <div className="min-w-0 flex-1">
         <p className="text-sm font-semibold">
-          {kindLabel[punch.kind]} \u00b7 <span className="tabular-nums">{formatTime(punch.at)}</span>
+          {kindLabel[punch.kind]} | <span className="tabular-nums">{formatTime(punch.at)}</span>
         </p>
         <p className="truncate text-xs text-muted">
           {punch.place ?? "No place"}
-          {punch.faceOk ? " \u00b7 Face locked" : punch.face ? " \u00b7 Photo only" : ""}
-          {punch.note ? ` \u00b7 ${punch.note}` : ""}
+          {punch.faceOk ? " | Face locked" : punch.face ? " | Photo only" : ""}
+          {punch.note ? ` | ${punch.note}` : ""}
         </p>
         <p className="text-xs text-muted">{formatShortDate(ymd(new Date(punch.at)))}</p>
       </div>
