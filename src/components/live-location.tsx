@@ -140,12 +140,12 @@ export function LiveLocation({ fix }: { fix: LiveFix }) {
         <div className="min-w-0">
           {fix.status === "live" && fix.lat != null && fix.lng != null ? (
             <>
-              <p className="truncate text-base font-semibold">{fix.place ?? "Locating place name\u2026"}</p>
+              <p className="truncate text-base font-semibold">{fix.place ?? "Locating place name..."}</p>
               <p className="mt-1 font-mono text-xs tabular-nums text-muted">
                 {fix.lat.toFixed(5)}, {fix.lng.toFixed(5)}
               </p>
               <p className="mt-1 text-xs text-muted">
-                Accuracy {fix.accuracy != null ? `\u00b1${Math.round(fix.accuracy)} m` : "unknown"}
+                Accuracy {fix.accuracy != null ? `+/-${Math.round(fix.accuracy)} m` : "unknown"}
               </p>
             </>
           ) : (
