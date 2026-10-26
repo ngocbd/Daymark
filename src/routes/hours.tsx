@@ -17,7 +17,7 @@ import {
 
 export const Route = createFileRoute("/hours")({
   component: HoursPage,
-  head: () => ({ meta: [{ title: "Hours · Daymark" }] }),
+  head: () => ({ meta: [{ title: "Hours - Daymark" }] }),
 });
 
 const weekday = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -60,10 +60,10 @@ function HoursPage() {
       <p className="mt-1 text-sm text-muted">Worked time from clock-in and clock-out pairs. Check-ins do not add hours.</p>
 
       <div className="mt-5 grid grid-cols-2 gap-3">
-        <Stat label="Today" value={now ? formatDuration(todayTotal) : "—"} />
-        <Stat label="This week" value={now ? formatDuration(weekTotal) : "—"} hint={overtime > 0 ? `${formatDuration(overtime)} over roster` : undefined} />
-        <Stat label="This month" value={now ? formatDuration(monthTotal) : "—"} />
-        <Stat label="Days on site" value={now ? String(presentDays) : "—"} />
+        <Stat label="Today" value={now ? formatDuration(todayTotal) : "-"} />
+        <Stat label="This week" value={now ? formatDuration(weekTotal) : "-"} hint={overtime > 0 ? `${formatDuration(overtime)} over roster` : undefined} />
+        <Stat label="This month" value={now ? formatDuration(monthTotal) : "-"} />
+        <Stat label="Days on site" value={now ? String(presentDays) : "-"} />
       </div>
 
       <Card className="mt-4">
@@ -76,7 +76,7 @@ function HoursPage() {
             const mark = marks.get(date);
             return (
               <li key={date} className={mark === "leave" ? "text-gold" : mark === "absence" ? "text-clay" : ""}>
-                {mark === "leave" ? "Leave" : mark === "absence" ? "Away" : (map.get(date) ?? 0) > 0 ? "Work" : "—"}
+                {mark === "leave" ? "Leave" : mark === "absence" ? "Away" : (map.get(date) ?? 0) > 0 ? "Work" : "-"}
               </li>
             );
           })}
