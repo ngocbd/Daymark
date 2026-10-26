@@ -10,7 +10,7 @@ import { formatShortDate, formatTime } from "@/lib/attendance/time";
 
 export const Route = createFileRoute("/requests")({
   component: RequestsPage,
-  head: () => ({ meta: [{ title: "Requests · Daymark" }] }),
+  head: () => ({ meta: [{ title: "Requests - Daymark" }] }),
 });
 
 const kinds: { value: RequestKind; label: string }[] = [
@@ -56,7 +56,7 @@ function RequestsPage() {
     }
     const end = endDate || startDate;
     if (end < startDate) {
-      setError("The end date can\u2019t be before the start.");
+      setError("The end date can't be before the start.");
       return;
     }
     if (timed && endTime <= startTime) {
@@ -136,7 +136,7 @@ function RequestsPage() {
       ) : null}
 
       {now == null ? (
-        <p className="mt-6 text-sm text-muted">Reading this device\u2026</p>
+        <p className="mt-6 text-sm text-muted">Reading this device...</p>
       ) : shown.length === 0 ? (
         <p className="mt-6 text-sm text-muted">No requests in this view.</p>
       ) : (
@@ -146,16 +146,16 @@ function RequestsPage() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-sm font-semibold">
-                    {kindLabel[request.kind]} \u00b7 {formatShortDate(request.startDate)}
-                    {request.endDate !== request.startDate ? ` \u2013 ${formatShortDate(request.endDate)}` : ""}
+                    {kindLabel[request.kind]} | {formatShortDate(request.startDate)}
+                    {request.endDate !== request.startDate ? ` - ${formatShortDate(request.endDate)}` : ""}
                   </p>
                   <p className="mt-1 text-sm text-muted">
-                    {request.startTime ? `${request.startTime}\u2013${request.endTime}` : "All day"}
-                    {request.site ? ` \u00b7 ${request.site}` : ""}
+                    {request.startTime ? `${request.startTime}-${request.endTime}` : "All day"}
+                    {request.site ? ` | ${request.site}` : ""}
                   </p>
                   <p className="mt-1 text-sm">{request.reason}</p>
                   <p className={`mt-2 text-xs font-semibold ${statusTone(request.status)}`}>
-                    {request.status} \u00b7 filed {formatTime(request.createdAt)}
+                    {request.status} | filed {formatTime(request.createdAt)}
                   </p>
                 </div>
                 <button
