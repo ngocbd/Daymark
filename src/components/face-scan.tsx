@@ -72,7 +72,7 @@ function grabFrame(video: HTMLVideoElement): string | null {
 }
 
 const copy: Record<FacePhase, string> = {
-  opening: "Opening the camera\u2026",
+  opening: "Opening the camera...",
   live: "Looking for a face in the oval",
   locked: "Face locked. Ready to stamp this punch.",
   blocked: "Camera isn't available. You can still clock in without a photo.",
@@ -223,7 +223,7 @@ export const FaceScan = forwardRef<FaceScanHandle>(function FaceScan(_, ref) {
         ) : null}
       </div>
       <p className="mt-3 px-1 text-xs text-muted">
-        Presence proof only \u2014 not an identity match. The photo stays in this browser.
+        Presence proof only - not an identity match. The photo stays in this browser.
       </p>
     </section>
   );
